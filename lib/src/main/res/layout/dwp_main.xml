@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/dwp_default_height"
+              android:paddingStart="16dp"
+              android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/dwp_vMonthName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Aug"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/dwp_vWeekPager"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7"/>
+
+</LinearLayout>

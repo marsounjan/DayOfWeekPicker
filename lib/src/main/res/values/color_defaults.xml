@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="default_textColor">#D9000000</color>
+    <color name="default_textColorSelected">#FFFFFFFF</color>
+    <color name="default_textColorToday">@color/default_textColor</color>
+    <color name="default_textColorPast">#66000000</color>
+
+    <color name="default_indicatorColor">#0089bf</color>
+    <color name="default_indicatorColorSelected">@color/default_textColorSelected</color>
+    <color name="default_indicatorColorToday">@color/default_indicatorColor</color>
+    <color name="default_indicatorColorPast">@color/default_indicatorColor</color>
+
+</resources>

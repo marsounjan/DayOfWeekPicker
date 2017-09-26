@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dwp_default_height">60dp</dimen>
+    <dimen name="cell_height_min">50dp</dimen>
+    <dimen name="cell_width_min">30dp</dimen>
+
+    <dimen name="indicator_width">4dp</dimen>
+
+</resources>

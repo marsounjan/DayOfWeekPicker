@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DayOfWeekPicker">
+        <attr name="bg_default" format="reference" />
+        <attr name="bg_selected" format="reference" />
+        <attr name="bg_today" format="reference" />
+        <attr name="bg_past" format="reference" />
+        <attr name="textColor_default" format="color" />
+        <attr name="textColor_selected" format="color" />
+        <attr name="textColor_today" format="color" />
+        <attr name="textColor_past" format="color" />
+        <attr name="indicatorColor_default" format="color" />
+        <attr name="indicatorColor_selected" format="color" />
+        <attr name="indicatorColor_today" format="color" />
+        <attr name="indicatorColor_past" format="color" />
+        <attr name="indicatorWidth" format="dimension" />
+        <attr name="selectedDateElevationEnabled" format="boolean" />
+        <attr name="selectedDateElevation" format="dimension" />
+        <attr name="monthLabelEnabled" format="boolean" />
+        <attr name="monthLabelTextAppearance" format="reference" />
+        <attr name="weekDayTextAppearance" format="reference" />
+        <attr name="dayNumberTextAppearance" format="reference" />
+    </declare-styleable>
+</resources>

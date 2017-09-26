@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DwpMonthLabelTextAppearance" parent="Base.TextAppearance.AppCompat.Body1"/>
+
+    <style name="DwpDateWeekDayTextAppearance" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="DwpDateDayNumTextAppearance" parent="Base.TextAppearance.AppCompat.Body1"/>
+</resources>
