@@ -493,7 +493,10 @@ open class DayOfWeekPicker : FrameLayout {
     }
 
     fun showDateSetContainingDate(date : Date) {
-        moveCurrentDateBasedOnPagerPosition(getPositionBasedOnDate(DateTime(date)))
+        val newPosition = getPositionBasedOnDate(DateTime(date))
+        if(newPosition != dwp_vWeekPager.currentItem){
+            dwp_vWeekPager.setCurrentItem(newPosition)
+        }
     }
 
     fun removeDayData(date : Date){
