@@ -415,7 +415,16 @@ open class DayOfWeekPicker : FrameLayout {
             daysBetween = 0 - daysBetween
         }
 
-        return weekPagerAdapter.initialPosition + daysBetween/7
+        var position = weekPagerAdapter.initialPosition + daysBetween/7
+        val movedVisibleDataSet = getVisibleDateSetForPagerPosition(position)
+        if(date.isBefore(DateTime(movedVisibleDataSet.startDate))){
+            position--
+        }
+        else if(date.isAfter(DateTime(movedVisibleDataSet.endDate))){
+            position++
+        }
+
+        return position
     }
 
     private fun getVisibleDateSetForPagerPosition(position : Int) : VisibleDateSet {
