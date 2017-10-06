@@ -22,10 +22,15 @@ android {
         }
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/java'
-    }
+}
 
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 dependencies {
@@ -50,11 +55,6 @@ install {
             }
         }
     }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.kotlin.srcDirs
-    classifier = 'sources'
 }
 
 group='com.github.marsounjan'
