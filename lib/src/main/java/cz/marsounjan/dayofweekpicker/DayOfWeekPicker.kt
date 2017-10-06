@@ -17,8 +17,7 @@ import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 import android.os.Parcel
-
-
+import org.joda.time.Days
 
 
 /**
@@ -401,6 +400,24 @@ open class DayOfWeekPicker : FrameLayout {
         return DateTime(currentDate).plusDays((position - weekPagerAdapter.initialPosition) * 7)
     }
 
+    private fun getPositionBasedOnDate(date: DateTime): Int {
+        val initialWeekEndDay = DateTime(getVisibleDateSetForPagerPosition(weekPagerAdapter.initialPosition).endDate)
+        var daysBetween = Days.daysBetween(
+                initialWeekEndDay,
+                date
+        ).days
+        //since jodatime is calculating just whole days in between we must add one day if days do not match
+        if(initialWeekEndDay.dayOfMonth() != date.dayOfMonth()){
+            daysBetween = daysBetween.inc()
+        }
+
+        if(date.isBefore(initialWeekEndDay)){
+            daysBetween = 0 - daysBetween
+        }
+
+        return weekPagerAdapter.initialPosition + daysBetween/7
+    }
+
     private fun getVisibleDateSetForPagerPosition(position : Int) : VisibleDateSet {
         val movedCurrentDate = moveCurrentDateBasedOnPagerPosition(position)
         return VisibleDateSet(
@@ -473,6 +490,10 @@ open class DayOfWeekPicker : FrameLayout {
                         it.notifyDataSetChanged()
                     }
                 }
+    }
+
+    fun showDateSetContainingDate(date : Date) {
+        moveCurrentDateBasedOnPagerPosition(getPositionBasedOnDate(DateTime(date)))
     }
 
     fun removeDayData(date : Date){
