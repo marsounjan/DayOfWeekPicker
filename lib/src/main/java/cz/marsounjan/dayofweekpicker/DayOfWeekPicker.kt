@@ -195,7 +195,7 @@ open class DayOfWeekPicker : FrameLayout {
     }
 
     interface OnVisibleDateSetChangedListener {
-        fun onVisibleDateSetChanged(startDate: Date, endDate: Date)
+        fun onVisibleDateSetChanged(visibleDateSet: VisibleDateSet)
     }
 
     constructor(context: Context) :
@@ -391,11 +391,7 @@ open class DayOfWeekPicker : FrameLayout {
 
         override fun onPageSelected(position: Int) {
             onVisibleDateSetChangedListener?.let {
-                val movedCurrentDate = moveCurrentDateBasedOnPagerPosition(position)
-                it.onVisibleDateSetChanged(
-                        movedCurrentDate.withTimeAtStartWeek().toDate(),
-                        movedCurrentDate.withTimeAtEndWeek().toDate()
-                )
+                it.onVisibleDateSetChanged(getVisibleDateSetForPagerPosition(position))
             }
             setupMonthLabel()
         }
@@ -403,6 +399,18 @@ open class DayOfWeekPicker : FrameLayout {
 
     private fun moveCurrentDateBasedOnPagerPosition(position: Int): DateTime {
         return DateTime(currentDate).plusDays((position - weekPagerAdapter.initialPosition) * 7)
+    }
+
+    private fun getVisibleDateSetForPagerPosition(position : Int) : VisibleDateSet {
+        val movedCurrentDate = moveCurrentDateBasedOnPagerPosition(position)
+        return VisibleDateSet(
+                movedCurrentDate.withTimeAtStartWeek().toDate(),
+                movedCurrentDate.withTimeAtEndWeek().toDate()
+        )
+    }
+
+    fun getVisibleDateSet() : VisibleDateSet {
+        return getVisibleDateSetForPagerPosition(dwp_vWeekPager.currentItem)
     }
 
     protected fun dateSelected(date: Date) {
@@ -471,8 +479,14 @@ open class DayOfWeekPicker : FrameLayout {
         dayDataMap.remove(DateTime(date).withTimeAtStartOfDay().millis)
     }
 
-    fun putDayData(date : Date, data : DayData){
-        dayDataMap.put(DateTime(date).withTimeAtStartOfDay().millis, data)
+    fun putDayData(data : DayData){
+        dayDataMap.put(DateTime(data.date).withTimeAtStartOfDay().millis, data)
+    }
+
+    fun putDayData(data : List<DayData>){
+        for(dayData in data){
+            dayDataMap.put(DateTime(dayData.date).withTimeAtStartOfDay().millis, dayData)
+        }
     }
 
     fun clearDateData(){
